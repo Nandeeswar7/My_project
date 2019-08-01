@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+   {% block content %}
+       {% for post in posts %}
+          <div class="card">
+          	<img src="{{ post.author.profile.image.url }}" width="50" height="50">
+            <span><a href="#" class="link">{{ post.author }}</a> &nbsp {{ post.date_posted| date:"F d,Y" }} </span>
+            <h2><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a> </h2>
+            <p>{{ post.content }}</p>
+          </div>
+          <br>
+          <br>
+       {% endfor %}
+    {% endblock content %}
+

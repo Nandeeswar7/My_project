@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, intial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-compatible" content="ie-edge">
+	<style type="text/css">
+
+		.hello{
+			display:none;
+		}
+		@media only screen and (max-width : 768px){
+			.hi{
+				display: none;
+			}
+			.hello{
+				display:block;
+			}
+		}
+
+		.container{
+            background-color: CadetBlue;
+			height: 50px;
+		}
+		.nav-bar{
+			font-size: 20px;
+			margin-left: 200px;
+			padding-top: 10px;
+		}
+		.nav-bar-text{
+			color: white;
+		}
+		.main{
+            background-color: GainsBoro;
+	    }
+
+		.home{
+			margin-left: 200px;
+		}
+
+		.sidenav{
+			width: 250px;
+			position: absolute;
+			z-index: 1;
+			margin-left: 980px;
+			overflow-x: hidden;
+		}
+		.sidenav-link{
+			font-size: 25px;
+		}
+		.card{
+			margin-top: 0 ;
+			background-color: grey;
+			max-width:300px;
+			padding-left: 10px;
+			border: 1px solid #ccc;
+			background-color: GhostWhite;
+		}
+
+		.btn{
+            background-color: CadetBlue;
+            color: white;
+		}
+		.btn-delete{
+			background-color: OrangeRed;
+		}
+
+		}
+			
+		.link{
+			font-size: 20px;
+		}
+		a{
+			text-decoration: none;
+		}
+		img{
+			border-radius: 50%;
+			border-style: inset;
+		}
+	</style>
+	{% if title %}
+	    <title>Django blog - {{title}}</title>
+	{% else %}
+	    <title>Django blog </title>
+	{%endif%}
+</head>
+<body style="background-color: GainsBoro">
+    <div class="container">
+      <div class="nav-bar" style="display: flex;">
+      	<div style="flex: 1">
+      	  <span><a href="/" class="nav-bar-text">Django blog</a></span>
+      	  <span style="margin-left: 20px"><a href="/" class="nav-bar-text">Home</a></span>
+      	  <span style="margin-left: 20px"><a href="/about" class="nav-bar-text">About</a></span>
+        </div>
+	   	<div class="hi" style="flex: 1">
+	   	  {% if user.is_authenticated %}
+	   	    <span><a href="/post/new" class="nav-bar-text">New Post</a></span>
+	   	    <span style="margin-left: 20px"><a href="/logout" class="nav-bar-text">Logout</a></span>
+	   	    <span style="margin-left: 20px"><a href="/profile" class="nav-bar-text">Profile</a></span>
+	   	  {% else %}
+	   	    <span><a href="/login" class="nav-bar-text">Login</a></span>
+	   	    <span style="margin-left: 20px"><a href="/register" class="nav-bar-text">Register &nbsp</a></span>
+	   	  {% endif %}
+
+	   </div>
+	   <div class="hello" >X</div>
+	  </div>
+	</div>
+    <div class="main">
+      <br>
+	  <br>
+	  <div class="sidenav">
+        <h3>&nbsp &nbsp &nbsp &nbsp Our Sidebar</h3>
+        <ul style="list-style: none;" class="sidenav-link">
+		    <li> <a href="#">Latest posts</a></li>
+		    <li><a href="#">Announcements</a></li>
+		    <li><a href="#">Calendar</a></li>
+		    <li><a href="#">etc</a></li>
+        </ul>
+	  </div>
+	  <div class="home">
+		{% if messages %}
+		  {% for message in messages %}
+		    {{ message }}
+		  {% endfor %}
+		  <br>
+		{% endif %}
+      	{% block content %}
+      	{% endblock %}
+      </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+	function(){
+	  var a=document.getElementsByClassName('hi')
+	  a.classList.toggle('world')
+	  console.log(a)
+	}
+</script>
